@@ -5,6 +5,37 @@
  *      Author: advalos
  */
 /**
+ * @brief imprime por pantalla un menu con seleccion de una opcion
+ * @param opcionElegida puntero , donde guarda la opcion seleccionada
+ */
+void imprimirMenu(int *opcionElegida);
+/**
+ * @brief imprime por pantalla un menu con seleccion de una opcion
+ * @param opcionElegidaSubMenu puntero, donde guarda la opcion seleccionada
+ */
+void imprimirSubMenu(int *opcionElegidaSubMenu);
+/**
+ * @brief solita el kilometro al usuario
+ * @param km puntero, donde guarda los kilometros ingresados
+ */
+void obtenerKm(int* km);
+/**
+ * @brief solicita el precio al usuario
+ * @param precio puntero, donde guarda el precio ingresado
+ */
+void obtenerPrecio(float *precio);
+/**
+ * @brief asigna valor ya establecidos
+ * @param km puntero, donde guarda los kilometros
+ * @param precioAerolinea puntero, donde guarda el precio de Aerolineas
+ * @param precioLatam puntero, donde guarda el precio de Latam
+ */
+void setearValoresCargaForzada(int *km, float *precioAerolinea, float *precioLatam);
+/**
+ * @brief imprime los calculos que realiza
+ */
+void imprimirCalculosARealizar(void);
+/**
  * @brief calcula un descuento del 10%
  * @param precio recibe el valor a la cual se le aplica el descuento
  * @param *descuento puntero, donde guarda el valor calculado
@@ -27,7 +58,7 @@ void bitcoin(float precio, float *conversor);
  * @param precio recibe el valor a la cual se le calcula el precio por km
  * @param *precioUnitario puntero, donde guarda el valor calculado
  */
-void precioPorKm(float precio, float km, float *precioUnitario);
+void precioPorKm(float precio, int km, float *precioUnitario);
 /**
  * @brief calcula la diferencia entre dos valores
  * @param precioAerolinea recibe el primer valor
@@ -44,7 +75,7 @@ void diferenciaDePrecio( float precioAerolinea, float precioLatam, float *difere
  * @param *conversor puntero, donde guarda el valor calculado
  * @param *precioUnitario puntero, donde guarda el valor calculado
  */
-void hacerCalculos(float precio, float km, float *descuento, float *interes, float *conversor, float *precioUnitario);
+void hacerCalculos(float precio, int km, float *descuento, float *interes, float *conversor, float *precioUnitario);
 /**
  * @brief informa los resultados pagando con tarjeta de debito, credito, bitcoin y el precio unitario
  * @param descuento recibe el valor obtenido pagando con tarjeta de debito
@@ -52,7 +83,7 @@ void hacerCalculos(float precio, float km, float *descuento, float *interes, flo
  * @param conversor recibe el valor obtenido pagando con bitcoin
  * @param precioUnitario recibe el valor por cada un kilometro
  */
-void informarResultado(float descuento, float interes,  float conversor,float precioUnitario);
+void imprimirResultado(float descuento, float interes,  float conversor,float precioUnitario);
 #ifndef CALCULO_H_
 #define CALCULO_H_
 

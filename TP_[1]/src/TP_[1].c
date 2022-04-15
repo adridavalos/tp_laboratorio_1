@@ -14,9 +14,9 @@
 
 int main(void)
 {
-	int menuPrincipa;
-	int subMenu;
-	float km=0;
+	int opcionElegida;
+	int opcionElegidaSubMenu;
+	int km=0;
 	float precioAerolinea=0;
 	float precioLatam=0;
 	float descuentoAerolinea;
@@ -32,47 +32,23 @@ int main(void)
 
 
 	do{
-		printf("\n1. Ingresar Kilometros \n"
-				"2. Ingresar Precio de Vuelos \n"
-				"3. Calcular todos los costos \n"
-				"4. Informar Resultados \n"
-				"5. Carga forzada de datos \n"
-				"6. Salir\n");
-		printf("\nIngrese una opcion: ");
-		scanf("%d", &menuPrincipa);
+		imprimirMenu(&opcionElegida);
 
-		switch (menuPrincipa)
+		switch (opcionElegida)
 		{
 			case 1:
-				do
-				{
-					printf("Ingresar Kilómetros: ");
-					scanf("%f", &km);
-				}while(km == 0);
+				obtenerKm(&km);
 			    break;
 			case 2:
-				printf("\n1)Precio vuelo Aerolíneas: "
-						"\n2)Precio vuelo Latam:\n");
-				printf("\nIngrese una opcion: ");
-				scanf("%d", &subMenu);
+				imprimirSubMenu(&opcionElegidaSubMenu);
 
-				switch (subMenu)
+				switch (opcionElegidaSubMenu)
 				{
 				    case 1:
-				    	do
-				    	{
-				    		printf("\nIngrese precio Aerolineas: ");
-				    		scanf("%f", &precioAerolinea);
-				    	}while(precioAerolinea <= 0);
-
+				    	obtenerPrecio(&precioAerolinea);
 				        break;
 				    case 2:
-				    	do
-				    	{
-				    		printf("\nIngrese precio Latam: ");
-				    		scanf("%f", &precioLatam);
-				    	}while(precioLatam <= 0);
-
+					    obtenerPrecio(&precioLatam);
 				    	break;
 				    default:
 				    	printf("\nOpcion no valida\n");
@@ -97,9 +73,8 @@ int main(void)
 					{
 						diferenciaDePrecio(precioAerolinea, precioLatam, &diferencia);
 					}
+					imprimirCalculosARealizar();
 				}
-
-
 
 
 			    break;
@@ -107,17 +82,21 @@ int main(void)
 
 				if(precioAerolinea == 0 && km == 0 && precioLatam == 0)
 				{
-									printf("\nError vuelva a ingresar los datos\n");
+						printf("\nError vuelva a ingresar los datos\n");
 				}else{
+					if(km > 0)
+					{
+						printf("\nKMs ingresado: %dkm\n",km);
+					}
 					if(precioAerolinea > 0 && km > 0)
 					{
 						printf("\nPrecio Aerolineas: $%.2f", precioAerolinea);
-						informarResultado(descuentoAerolinea, interesAerolinea, conversorAerolinea, precioUnitarioAerolinea);
+						imprimirResultado(descuentoAerolinea, interesAerolinea, conversorAerolinea, precioUnitarioAerolinea);
 					}
 					if(precioLatam > 0 && km >0)
 					{
 						printf("\nPrecio Latam: $%.2f", precioLatam);
-						informarResultado(descuentoLatam, interesLatam, conversorLatam, precioUnitarioLatam);
+						imprimirResultado(descuentoLatam, interesLatam, conversorLatam, precioUnitarioLatam);
 					}
 					if(precioAerolinea > 0 && km > 0 && precioLatam > 0){
 						printf("\nLa diferencia de precio es : $%.2f\n", diferencia);
@@ -125,9 +104,7 @@ int main(void)
 				}
 			    break;
 			case 5:
-				km = 7090;
-				precioAerolinea= 162965;
-				precioLatam= 159339;
+				setearValoresCargaForzada(&km,&precioAerolinea,&precioLatam);
 			    break;
 			case 6:
 				break;
@@ -136,7 +113,7 @@ int main(void)
 			    break;
 		}
 
-	}while(menuPrincipa !=6);
+	}while(opcionElegida !=6);
 
 
 	return EXIT_SUCCESS;
